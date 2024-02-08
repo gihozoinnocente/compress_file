@@ -47,9 +47,18 @@ def main():
     for i, compress_type in enumerate(compress_types, 1):
         print(f"{i}. {compress_type}")
 
-    compress_choice = int(
-        input("Select the desired compress type (enter the corresponding number): ")
+    compress_choice = input(
+        "Select the desired compress type (enter the corresponding number): "
     )
+
+    if isinstance(compress_choice, str):
+        try:
+            compress_choice = int(compress_choice)
+        except ValueError:  # Handle non-integer input
+            print(
+                "Error: Invalid compress type choice. Please Enter a number from 1 to 3."
+            )
+            return
     if compress_choice not in range(1, len(compress_types) + 1):
         print("Error: Invalid compress type choice.")
         return
